@@ -14,7 +14,7 @@ const Stack = createStackNavigator();
 
 function Login({ navigation }: AuthNavProps<'Login'>) {
 
-	const { user, login } = useContext(AuthContext);
+	const { login } = useContext(AuthContext);
 
 	return (
 		<Center>
@@ -47,7 +47,7 @@ function Register({
 			<Text>I'm a Register screen</Text>
 			<Text>route name: {route.name}</Text>
 			<Button
-				title="go to register"
+				title="go to login"
 				onPress={() => {
 					navigation.navigate('Login');
 					// navigation.goBack();

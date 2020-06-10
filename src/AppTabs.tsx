@@ -7,32 +7,13 @@ import { AppParamList } from './AppParamList';
 import { Center } from './Center';
 import { AuthContext } from './AuthProvider';
 import { HomeStack } from './HomeStack';
+import { SearchStack } from './SearchStack';
 
 interface AppTabsProps {
 	[key: string]: any,
 }
 
 const Tabs = createBottomTabNavigator<AppParamList>();
-
-function Home() {
-
-	const { logout } = useContext(AuthContext);
-
-	return (
-		<Center>
-			<Text>Home</Text>
-			<Button title="logout" onPress={() => logout()} />
-		</Center>
-	);
-}
-
-function Search() {
-	return (
-		<Center>
-			<Text>Serach</Text>
-		</Center>
-	);
-}
 
 export const AppTabs: React.FC<AppTabsProps> = ({ children }) => {
 	return (
@@ -69,7 +50,7 @@ export const AppTabs: React.FC<AppTabsProps> = ({ children }) => {
 			}}
 		>
 			<Tabs.Screen name='Home' component={HomeStack} />
-			<Tabs.Screen name='Search' component={Search} />
+			<Tabs.Screen name='Search' component={SearchStack} />
 		</Tabs.Navigator>
 	);
 }

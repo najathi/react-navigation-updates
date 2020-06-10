@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Text, TouchableOpacity, FlatList, Button } from "react-native";
 import faker from "faker";
@@ -6,6 +6,7 @@ import faker from "faker";
 import { Center } from './Center';
 import { AuthContext } from './AuthProvider';
 import { HomeParamList, HomeNavProps } from './HomeParamList';
+import { addProductRoutes } from './addProductRoutes';
 
 interface HomeStackProps {
 	[key: string]: any,
@@ -34,45 +35,13 @@ function Feed({ navigation }: HomeNavProps<'Feed'>) {
 	);
 }
 
-function Product({ navigation, route }: HomeNavProps<'Product'>) {
-	return (
-		<Center>
-			<Text>{route.params.name}</Text>
-			<Button
-				title="Edit This Product"
-				onPress={() => navigation.navigate('EditProduct', {
-					name: route.params.name
-				})} />
-		</Center>
-	);
-}
-
-function EditProduct({ navigation, route }: HomeNavProps<'EditProduct'>) {
-	return (
-		<Center>
-			<Text>editing {route.params.name}...</Text>
-		</Center>
-	);
-}
-
 export const HomeStack: React.FC<HomeStackProps> = () => {
 
 	const { logout } = useContext(AuthContext);
 
 	return (
 		<Stack.Navigator initialRouteName="Feed">
-			<Stack.Screen
-				options={({ route }) => ({
-					headerTitle: `Edit: ${route.params.name}`
-				})}
-				name="EditProduct"
-				component={EditProduct} />
-			<Stack.Screen
-				options={({ route }) => ({
-					headerTitle: `Product: ${route.params.name}`
-				})}
-				name="Product"
-				component={Product} />
+			{addProductRoutes(Stack as any)}
 			<Stack.Screen
 				name="Feed"
 				component={Feed}

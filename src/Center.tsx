@@ -2,7 +2,8 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 interface CenterProps {
-	[key: string]: any,
+	[key: string]: any;
+	children: React.ReactNode;
 }
 
 export const Center: React.FC<CenterProps> = ({ children }) => {
@@ -16,7 +17,7 @@ export const Center: React.FC<CenterProps> = ({ children }) => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		alignItems: 'center',
 		justifyContent: 'center',
+		alignItems: 'center',
 	}
 });
