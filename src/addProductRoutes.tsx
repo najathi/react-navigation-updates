@@ -11,7 +11,7 @@ import { SearchParamList, SearchNavProps } from "./SearchParamList";
 export const addProductRoutes = (Stack: TypedNavigator<
 	HomeParamList | SearchParamList,
 	StackNavigationState,
-	AnimationPlayState,
+	any,
 	any,
 	any
 >
